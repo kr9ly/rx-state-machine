@@ -1,0 +1,18 @@
+machine:
+  java:
+    version: openjdk8
+checkout:
+  post:
+    - chmod +x gradlew
+test:
+  override:
+    - ./gradlew test
+  post:
+    # Copy the test metadata to the reports folder
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex "./build/test-results/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+deployment:
+  maven:
+    branch: master
+    commands:
+      - ./gradlew -Psetting_bintray_apikey=$BINTRAY_APIKEY bintrayUpload
