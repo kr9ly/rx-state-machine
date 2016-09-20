@@ -13,7 +13,7 @@ jcenter()
 And Add this to `dependencies` block in your build.gradle
 
 ```
-compile 'net.kr9ly:rx-state-machine:1.0.0'
+compile 'net.kr9ly:rx-state-machine:1.1.0'
 ```
 
 ### Usage

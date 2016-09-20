@@ -62,10 +62,12 @@ public class RxStateMachine<T> {
     }
 
     public Observable<Class<? extends T>> enterObservable() {
-        return stateQueue;
+        return stateQueue
+                .onBackpressureBuffer();
     }
 
     public Observable<Class<? extends T>> exitObservable() {
-        return prevStateQueue;
+        return prevStateQueue
+                .onBackpressureBuffer();
     }
 }
